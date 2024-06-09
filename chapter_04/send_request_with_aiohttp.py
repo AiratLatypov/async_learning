@@ -6,7 +6,7 @@ from utils import async_timed
 
 @async_timed()
 async def fetch_status(session: ClientSession, url: str) -> int:
-    ten_millis = aiohttp.ClientTimeout(total=1)
+    ten_millis = aiohttp.ClientTimeout(total=10)
     async with session.get(url, timeout=ten_millis) as result:
         return result.status
 
@@ -20,4 +20,4 @@ async def main():
         print(f"Состояние для {url} было равно {status}")
 
 
-asyncio.run(main())
+# asyncio.run(main())

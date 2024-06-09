@@ -2,14 +2,7 @@ import asyncio
 from time import sleep
 import aiohttp
 
-from dataclasses import dataclass, field
 from utils import delay
-
-
-@dataclass
-class Test:
-    name: str
-    price: float
 
 
 # loop = asyncio.get_event_loop()
