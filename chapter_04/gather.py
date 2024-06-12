@@ -8,8 +8,10 @@ from utils import async_timed
 @async_timed()
 async def main():
     async with ClientSession() as session:
-        """Функция gather выдаст все результаты в том же порядке, что и получила. Но будет дожидаться 
-        пока не пройдут все запросы."""
+        """
+        Функция gather принимает набор корутин. Выдаст все результаты в том же порядке, что и получила. 
+        Но будет дожидаться пока не пройдут все запросы.
+        """
         urls = ["https://google.com" for _ in range(1_000)]
         requests = [fetch_status(session, url) for url in urls]
         status_codes = await asyncio.gather(*requests)

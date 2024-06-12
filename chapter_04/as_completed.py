@@ -8,7 +8,7 @@ from send_request_with_aiohttp import fetch_status
 async def main():
     async with aiohttp.ClientSession() as session:
         """
-        as_completed позволяет получить список корутин и ожидать их выполнения и как-то обрабатывать.
+        as_completed позволяет получить итератор корутин и ожидать их выполнения по одной и как-то обрабатывать.
         В отличие от gather, который ждет выполнения всех задач. Также можно передавать атрибут timeout.
         
         Из минусов:
