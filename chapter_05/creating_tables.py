@@ -1,7 +1,6 @@
 import asyncio
-import asyncpg
-import os
 
+from chapter_05.database import create_connection
 from chapter_05.sql_for_tables_creation import (
     CREATE_BRAND_TABLE,
     CREATE_PRODUCT_TABLE,
@@ -14,13 +13,13 @@ from chapter_05.sql_for_tables_creation import (
 
 
 async def main():
-    connection = await asyncpg.connect(
-        host=os.getenv("DATABASE_HOST"),
-        port=os.getenv("DATABASE_PORT"),
-        user=os.getenv("DATABASE_USER"),
-        password=os.getenv("DATABASE_PASSWORD"),
-        database=os.getenv("PRODUCTS_DB_NAME")
-    )
+    """
+    Работа ведется для бд products. Создана до исполнения файла с помощью psql -c "CREATE TABLE products;".
+
+    execute - корутина, ожидаем выполнение с помощью await.
+    """
+
+    connection = await create_connection()
 
     statements = [
         CREATE_BRAND_TABLE,
