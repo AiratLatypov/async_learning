@@ -39,5 +39,15 @@ async def main():
     print("База данных product создана!")
     await connection.close()
 
+    # Создается база данных product...
+    # CREATE TABLE
+    # CREATE TABLE
+    # CREATE TABLE
+    # CREATE TABLE
+    # CREATE TABLE
+    # INSERT 0 1
+    # INSERT 0 1
+    # База данных product создана!
+
 
 asyncio.run(main())

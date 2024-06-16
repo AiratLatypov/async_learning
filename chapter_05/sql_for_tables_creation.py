@@ -44,19 +44,19 @@ CREATE_SKU_TABLE = \
         FOREIGN KEY (product_size_id) 
         REFERENCES product_size(product_size_id),
         FOREIGN KEY (product_color_id) 
-        REFERENCES product_color(product_color_id),
+        REFERENCES product_color(product_color_id)
     );
     """
 
 COLOR_INSERT = \
     """
-    INSERT INTO product_color VALUES(1, "Blue");
-    INSERT INTO product_color VALUES(2, "Black");
+    INSERT INTO product_color VALUES(1, 'Blue');
+    INSERT INTO product_color VALUES(2, 'Black');
     """
 
 SIZE_INSERT = \
     """
-    INSERT INTO product_size VALUES(1, "Small");
-    INSERT INTO product_size VALUES(2, "Medium");
-    INSERT INTO product_size VALUES(3, "Large");
+    INSERT INTO product_size VALUES(1, 'Small');
+    INSERT INTO product_size VALUES(2, 'Medium');
+    INSERT INTO product_size VALUES(3, 'Large');
     """
