@@ -20,6 +20,9 @@ product_query = \
 
 
 async def query_product(pool):
+    """Метод acquire выхватывает из пула свободное подключение. По выходе из блока async with подключение будет
+    возвращено в пул."""
+
     async with pool.acquire() as connection:
         return await connection.fetchrow(product_query)
 
