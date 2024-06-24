@@ -1,7 +1,7 @@
 import asyncio
 
 from chapter_05.database import create_connection
-from chapter_05.sql_for_tables_creation import (
+from chapter_05.db_schema.sql_for_tables_creation_5_2 import (
     CREATE_BRAND_TABLE,
     CREATE_PRODUCT_TABLE,
     CREATE_PRODUCT_COLOR_TABLE,

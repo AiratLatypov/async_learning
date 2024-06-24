@@ -3,7 +3,7 @@ import asyncio
 from random import randint, sample
 
 from chapter_05.database import create_connection
-from chapter_05.insert_random_brands_5_5 import load_common_words
+from chapter_05.pools.insert_random_brands_5_5 import load_common_words
 
 
 def gen_products(

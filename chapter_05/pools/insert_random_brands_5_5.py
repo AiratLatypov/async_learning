@@ -5,7 +5,7 @@ from chapter_05.database import create_connection
 
 
 def load_common_words() -> list[str]:
-    with open("common_words.txt") as common_words:
+    with open("../common_words.txt") as common_words:
         return common_words.readlines()
 
 
