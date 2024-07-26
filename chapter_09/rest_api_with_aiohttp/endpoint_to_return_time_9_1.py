@@ -4,10 +4,10 @@ from aiohttp import web
 from aiohttp.web_request import Request
 from aiohttp.web_response import Response
 
-routes = web.RouteTableDef()
+time_route = web.RouteTableDef()
 
 
-@routes.get("/time")
+@time_route.get("/time")
 async def time(request: Request) -> Response:
     print("REQUEST", request.__dict__)
     today = datetime.today()
@@ -19,8 +19,3 @@ async def time(request: Request) -> Response:
     }
 
     return web.json_response(result)
-
-
-app = web.Application()
-app.add_routes(routes)
-web.run_app(app)
