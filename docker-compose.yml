@@ -21,7 +21,9 @@ services:
       - postgres
     env_file:
       - .env
-    command: python chapter_09/rest_api_with_aiohttp/main.py # tail -f /dev/null
+    # command: tail -f /dev/null
+    command: python chapter_09/rest_api_with_aiohttp/main.py
+    # command: gunicorn -w 8 chapter_09/rest_api_with_aiohttp/brands_with_flask_9_5.py:app
     volumes:
       - .:/app
     ports:
