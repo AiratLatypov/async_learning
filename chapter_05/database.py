@@ -2,6 +2,9 @@ import asyncpg
 import os
 
 from asyncpg import Pool
+from aiohttp.web_app import Application
+
+DB_KEY = "database"
 
 
 async def create_connection():
@@ -26,3 +29,15 @@ async def create_pool(min_size=6, max_size=6) -> Pool:
         max_size=max_size,
     )
     return pool
+
+
+async def add_database_pool_to_app(application: Application):
+    print("Creating database pool.")
+    pool = await create_pool()
+    application[DB_KEY] = pool
+
+
+async def close_app_database_pool(application: Application):
+    print("Destroying database pool.")
+    pool: Pool = application[DB_KEY]
+    await pool.close()
