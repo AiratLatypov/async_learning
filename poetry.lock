@@ -873,6 +873,23 @@ files = [
 ]
 
 [[package]]
+name = "starlette"
+version = "0.38.1"
+description = "The little ASGI library that shines."
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "starlette-0.38.1-py3-none-any.whl", hash = "sha256:42688a287165bd6acc53068457b5cbf28a3204110b704930411728a633f0f7b8"},
+    {file = "starlette-0.38.1.tar.gz", hash = "sha256:890e89d9b1b367bad6fd11a6e191f40d03504df1ff55fd15674a3b35a122990e"},
+]
+
+[package.dependencies]
+anyio = ">=3.4.0,<5"
+
+[package.extras]
+full = ["httpx (>=0.22.0)", "itsdangerous", "jinja2", "python-multipart (>=0.0.7)", "pyyaml"]
+
+[[package]]
 name = "urllib3"
 version = "2.2.2"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -1012,4 +1029,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "8fc2094a22de4a5bf433bf4b75de504ffb00e446fbea723de818c080bfa02b81"
+content-hash = "e6aa9373412992db1943574698879938842d035850903972ec1e3c7e45a8b584"
