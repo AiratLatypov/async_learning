@@ -10,3 +10,4 @@ urlpatterns = [
 ]
 
 # command: gunicorn async_views.asgi:application -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
+# http://localhost:8000/requests/?url=https://www.google.com/&request_num=10
