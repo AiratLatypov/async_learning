@@ -1,8 +1,13 @@
 import asyncio
-from datetime import datetime
-from aiohttp import ClientSession
-from django.shortcuts import render
 import aiohttp
+from aiohttp import ClientSession
+from datetime import datetime
+from functools import partial
+
+from django.shortcuts import render
+from django.http import HttpResponse
+
+from asgiref.sync import sync_to_async, async_to_sync
 
 
 async def get_url_details(session: ClientSession, url: str):
@@ -30,7 +35,31 @@ async def make_requests(url: str, request_num: int):
 
 
 async def requests_view(request):
+    """Использование асинхронного представления."""
     url: str = request.GET["url"]
     request_num: int = int(request.GET["request_num"])
     context = await make_requests(url, request_num)
+    return render(request, "async_api/requests.html", context)
+
+
+def sleep(seconds: int):
+    import time
+    time.sleep(seconds)
+
+
+async def sync_to_async_view(request):
+    """Выполнение блокирующей работы в асинхронном представлении."""
+    sleep_time: int = int(request.GET["sleep_time"])
+    num_calls: int = int(request.GET["num_calls"])
+    thread_sensitive: bool = request.GET["thread_sensitive"] == "True"
+    function = sync_to_async(partial(sleep, sleep_time), thread_sensitive=thread_sensitive)
+    await asyncio.gather(*[function() for _ in range(num_calls)])
+    return HttpResponse("")
+
+
+def requests_view_sync(request):
+    """Использование асинхронности в обычном представлении."""
+    url: str = request.GET["url"]
+    request_num: int = int(request.GET["request_num"])
+    context = async_to_sync(partial(make_requests, url, request_num))()
     return render(request, "async_api/requests.html", context)
