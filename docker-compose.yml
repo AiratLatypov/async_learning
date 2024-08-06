@@ -13,6 +13,17 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin_container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+
   app:
     build:
       context: .
@@ -23,14 +34,15 @@ services:
       - .env
     # command: tail -f /dev/null
     # command: python chapter_09/rest_api_with_aiohttp/main.py
-    command: gunicorn async_views.asgi:application -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
+    # command: gunicorn async_views.asgi:application -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
+    command: python chapter_10/microservices/main.py
     # command: gunicorn -w 8 chapter_09/rest_api_with_aiohttp/brands_with_flask_9_5.py:app
     volumes:
       - .:/app
     ports:
-      - "8080:8080"
       - "8000:8000"
       - "8001:8001"
+      - "8002:8002"
 
 volumes:
   postgres_data:
