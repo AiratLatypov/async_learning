@@ -8,6 +8,8 @@ class CircuitOpenException(Exception):
 
 class CircuitBreaker:
 
+    """Паттерн прерыватель."""
+
     def __init__(
         self,
         callback,
